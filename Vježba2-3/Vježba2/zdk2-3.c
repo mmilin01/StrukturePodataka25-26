@@ -279,6 +279,7 @@ int freemem(Position q) //koristimo je za oslobadanje memorije
     while (q->next != NULL) {
         temp = q->next;  // spremimo clan koji ćemo obrisati
         q->next = temp->next;    // preskočimo taj clan u listi
+        //treba dodat temp->next=NULL da se oslobode pointeri
         free(temp);   // oslobodimo memoriju
     }
 
@@ -378,3 +379,4 @@ int readFromFile(Position q, FILE* fp)
     return EXIT_SUCCESS;
 
 }
+
