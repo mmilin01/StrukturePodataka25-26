@@ -35,7 +35,6 @@ typedef struct _person {
 
 typedef Person* Position;
 
-// Function prototypes
 Position createPerson();
 int addToFront(Position);
 int addToEnd(Position);
@@ -377,4 +376,5 @@ int readFromFile(Position q, FILE* fp)
 
     printf("\tEnd of file reached.\n");
     return EXIT_SUCCESS;
+
 }
