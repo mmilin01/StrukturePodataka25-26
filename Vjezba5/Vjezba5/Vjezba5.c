@@ -145,7 +145,7 @@ int printResult(Position q) {
 // Funkcija za ciscenje memorije
 int freeStack(Position q) {
     Position temp;
-    while (q->next) {
+    while (q->next != NULL) {
         temp = q->next;
         q->next = temp->next;
         temp->next = NULL;
@@ -154,3 +154,4 @@ int freeStack(Position q) {
     return EXIT_FAILURE;
 
 }
+
