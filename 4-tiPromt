@@ -1,0 +1,46 @@
+KAKO TRIA IZGLEDAT
+
+1)td strict _poly* Postition;
+  td struct _poly{
+      int coeff;
+      int pow;
+      Position next;
+  }poly;  
+
+
+poly head = {coeff = 0, pow = 0; next = NULL};
+poly firstP = head;
+poly secondP = head;
+
+2) -otvorit dat 
+   -pohraniti podatke [4, 2, 3, 1, -2, 0]-ovo je ka 4 na drugu pa 3 na 1 pa -2 na 0 jel nea x
+   -zatvoriti dat
+  (isprazni buffer na kraju)
+
+3) - alokacija newEl
+    prev = &firstP;
+    q= prev->next;
+
+a) q = NULL
+  newEl->next = prev->next;   
+  prev->next = newEl;
+  q = prev->next;
+
+b)q->pow > new El->pow
+  prev = q;
+  q = prev->next;
+
+c)q->pow < newEl->pow  [2,0-4,3, 2, 1, 8, 4] ovje ka ako eksponenti nisu po redu slozeni ap tria vako
+  newEl->next = q
+
+d) ZA ZBRAJANJE (mozeo zbrajat iste potencije)
+  q->coeff+= p->coeff    
+
+e) za brisanje(ako nako zbrajanjo ostane i kfoeficijent nula i power pa trebamo ga solobodit da en ostane )
+  prev->next= q->next;
+  q->net = NULL;
+  free(q);
+
+f) ka za množenje
+  first-> coeff ? second->coeff:
+  first->pow + second ->pow;
