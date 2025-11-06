@@ -4,13 +4,13 @@
 #include <ctype.h>
 #include <string.h>
 
-typedef struct _postfix* Position;
+typedef struct _postfix* Position; //pokaziovac na strucuturu _postfix
 typedef struct _postfix {
     double number;
-    Position next;
+    Position next; //pokazivac na sljedeci element
 } postfix;
 
-// Deklaracije funkcija
+
 int push(Position q, double number);
 int pop(Position q, char operation);
 int readAndCalculate(Position q, const char* filename);
@@ -18,10 +18,10 @@ int printResult(Position q);
 int freeStack(Position q);
 
 int main() {
-    postfix head = { .number = 0, .next = NULL };
+    postfix head = { .number = 0, .next = NULL }; //head element
     const char* filename = "postfix.txt";
 
-    printf("Citam postfiks izraz iz datoteke: %s\n\n", filename);
+    printf("Citam izraze iz datoteke: %s\n\n", filename);
 
     if (readAndCalculate(&head, filename) == 0) {
         printResult(&head);
@@ -35,33 +35,28 @@ int main() {
 
 // Funkcija za dodavanje elementa na stog (push)
 int push(Position q, double number) {
-    Position newEl = (Position)malloc(sizeof(postfix));
+    Position newEl = (Position)malloc(sizeof(postfix)); //aloc memorije
     if (!newEl) {
         printf("Greska pri alokaciji memorije!\n");
         return EXIT_FAILURE;
     }
 
-    newEl->number = number;
-    newEl->next = q->next;
-    q->next = newEl;
+    newEl->number = number;    //Spremamo broj u novi element
+    newEl->next = q->next;    //novi element pokazuje na stari vrh stoga
+    q->next = newEl;        // head sada pokazuje na novi element (postaje elment na vrhu stoga)
 
     return 0;
 }
 
 // Funkcija za uklanjanje elementa sa stoga (pop) i izvodjenje operacije
 int pop(Position q, char operation) {
-    Position first = q->next;
+    Position first = q->next; //first pokazuje na prvielement
     Position second = NULL;
-    double result = 0;
+    double result = 0;    //spremamo rezultat operacije
+    
+    second = first->next; //sada pokazuje na drugi element
 
-    if (!first || !first->next) {
-        printf("Greska: Nedovoljno operanada za operaciju %c\n", operation);
-        return EXIT_FAILURE;
-    }
 
-    second = first->next;
-
-    // Izvodjenje operacije
     switch (operation) {
     case '+':
         result = second->number + first->number;
@@ -75,7 +70,7 @@ int pop(Position q, char operation) {
     case '/':
         if (first->number == 0) {
             printf("Greska: Dijeljenje sa nulom!\n");
-            return -1;
+            return EXIT_FAILURE;
         }
         result = second->number / first->number;
         break;
@@ -83,12 +78,10 @@ int pop(Position q, char operation) {
         printf("Greska: Nepoznata operacija %c\n", operation);
         return EXIT_FAILURE;
     }
+    
+    second->number = result; // Spremanje rezultata u drugi element ka usteda memorije jel nan vise netriba
 
-    // Spremanje rezultata u drugi element
-    second->number = result;
-
-    // Uklanjanje prvog elementa
-    q->next = second;
+    q->next = second;    //head pokazuej na second preskacemo prvi
     first->next = NULL;
     free(first);
 
@@ -103,34 +96,31 @@ int readAndCalculate(Position q, const char* filename) {
         return EXIT_FAILURE;
     }
 
-    char c;
-    double number;
+    char c;    //za citanje znakova
+    double number;    //za citanje brojeva
 
     while ((c = fgetc(fp)) != EOF) {
-        // Preskoci razmake i novi red
-        if (isspace(c)) {
+        if (isspace(c)) {     //ako je znak razma tab novi red preskacemmo ga
             continue;
         }
 
-        // Provjera je li broj
-        if (isdigit(c)) {
-            ungetc(c, fp); // Vrati znak natrag u stream
-            if (fscanf(fp, "%lf", &number) == 1) {
-                printf("Broj: %.0lf\n", number);
-                push(q, number);
+        if (isdigit(c)) {    // Provjera je li broj
+            ungetc(c, fp);    //vracamo znak natrag u stream
+            if (fscanf(fp, "%lf", &number) == 1) {     //cita broj
+                printf("Broj: %.0lf\n", number);    
+                push(q, number);    //dodajemo broj na stog
             }
         }
         // Provjera je li operator
         else if (c == '+' || c == '-' || c == '*' || c == '/') {
-            printf("Operator: %c\n", c);
-            if (pop(q, c) != 0) {
+            if (pop(q, c) != 0) {    //ako imamo operator pozivamo pop i racunamo operaciju
                 fclose(fp);
                 return -1;
             }
         }
         // Nevaljan podatak
         else {
-            printf("Upozorenje: Nepoznat znak '%c' - preskacemo\n", c);
+            printf("Nepoznat znak '%c' \n", c);
         }
     }
 
@@ -146,16 +136,10 @@ int printResult(Position q) {
         printf("Greska: Stog je prazan!\n");
         return EXIT_FAILURE;
     }
-
-    if (first->next != NULL) {
-        printf("Greska: Vise od jednog elementa na stogu - nevazeći izraz!\n");
-        return EXIT_FAILURE;
-    }
-
-    printf("\n===================\n");
+    
     printf("REZULTAT: %.2lf\n", first->number);
-    printf("===================\n");
-    return EXIT_FAILURE;
+    
+    return 0;
 }
 
 // Funkcija za ciscenje memorije
@@ -168,4 +152,5 @@ int freeStack(Position q) {
         free(temp);
     }
     return EXIT_FAILURE;
+
 }
