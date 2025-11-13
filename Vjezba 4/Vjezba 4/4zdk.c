@@ -11,8 +11,6 @@ Napomena: Eksponenti u datoteci nisu nužno sortirani.
 #include <string.h>
 #include <math.h>
 
-// ---------------------- STRUKTURA ----------------------
-
 typedef struct _poly* Position;
 
 typedef struct _poly {
@@ -20,8 +18,6 @@ typedef struct _poly {
     int pow;        // eksponent
     Position next;  // pokazivač na sljedeći član
 } Poly;
-
-// ---------------------- DEKLARACIJE ----------------------
 
 Position createNode(int coeff, int pow);
 int insertSorted(Position head, int coeff, int pow);
@@ -31,8 +27,6 @@ void printPoly(Position head);
 Position addPolynomials(Position first, Position second);
 Position multiplyPolynomials(Position first, Position second);
 int freePoly(Position head);
-
-// ---------------------- MAIN ----------------------
 
 int main()
 {
@@ -73,8 +67,6 @@ int main()
 
     return 0;
 }
-
-// ---------------------- FUNKCIJE ----------------------
 
 // Kreira novi čvor
 Position createNode(int coeff, int pow) {
@@ -238,3 +230,4 @@ int freePoly(Position q) {
     }
     return 0;
 }
+
