@@ -7,10 +7,6 @@
 #define MAX_SIZE 128
 #define DATE_LEN 11
 
-// -------------------------------
-//          STRUCTOVI
-// -------------------------------
-
 // Cvor artikla
 typedef struct _article {
     char name[MAX_SIZE];
@@ -430,5 +426,6 @@ int lowestIncomeArticle(ReceiptPosition receipts)
 
     return 0;
 }
+
 
 
