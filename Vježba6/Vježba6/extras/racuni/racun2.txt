@@ -1,0 +1,6 @@
+2024-01-03
+Kruh, 3, 1.30
+Brasno, 2, 1
+Cokolada, 1, 2.00
+Sol, 2, 0.8
+Secer 1, 0.7

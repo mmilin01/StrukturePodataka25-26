@@ -1,0 +1,10 @@
+﻿  zdk6.c
+C:\Users\Matej\Desktop\Vježba6\Vježba6\zdk6.c(334,46): warning C4033: 'mostSoldArticle' must return a value
+C:\Users\Matej\Desktop\Vježba6\Vježba6\zdk6.c(359,46): warning C4033: 'leastSoldArticle' must return a value
+C:\Users\Matej\Desktop\Vježba6\Vježba6\zdk6.c(386,46): warning C4033: 'highestIncomeArticle' must return a value
+C:\Users\Matej\Desktop\Vježba6\Vježba6\zdk6.c(410,46): warning C4033: 'lowestIncomeArticle' must return a value
+C:\Users\Matej\Desktop\Vježba6\Vježba6\zdk6.c(354,1): warning C4715: 'mostSoldArticle': not all control paths return a value
+C:\Users\Matej\Desktop\Vježba6\Vježba6\zdk6.c(381,1): warning C4715: 'leastSoldArticle': not all control paths return a value
+C:\Users\Matej\Desktop\Vježba6\Vježba6\zdk6.c(405,1): warning C4715: 'highestIncomeArticle': not all control paths return a value
+C:\Users\Matej\Desktop\Vježba6\Vježba6\zdk6.c(432,1): warning C4715: 'lowestIncomeArticle': not all control paths return a value
+  Vježba6.vcxproj -> C:\Users\Matej\Desktop\Vježba6\x64\Debug\Vježba6.exe
