@@ -1,0 +1,48 @@
+dvije strujkture:
+  struct directory{
+    char name[MAX];
+    dirPosition next;
+    dirPosition subDirPosition;
+  }
+
+  struct stack{
+    stackPosition next;    //Pokazivac stacka
+    dirPosition dirLevel;    //pokazivvac nesto na strukturu ka vrijednsiot je za akse kretanje
+  }
+
+    push(&headStack, rootDir)
+    
+    -headDir i headStack
+    -alocirati mem "C:"
+    -headDir->next=rootDir;
+    
+    -headDir pokazuije na one ise tetine C: E:......
+    -sinDirPosition ka pokazuje na listu sve djece
+
+
+1)md Users
+  -alokaciaj newDir
+  parentDir = headStack->next->dirLevel;
+  newDir->next = oarent->subDirPositiom;  //neradiomo sortirami unos
+  parent->subDurPositiom = new Dir;
+
+2)Cd Users
+temp = headStack->next->dirLevel->subDirPostition;
+  if(strcmpr(tem->name) !=0(poanta ime se ne poduudara s onin  kojim se usproeduje))
+          temo= temp->next;
+  push
+
+3)cd..  provejra jesmo u root?
+  -pop(&headStack)
+
+4)dir
+  printdir(dirPosition current, int level)
+    dirPosition currentSub = NULL;
+    if(current->subDirPosition != NULL)
+      currentSub = current->subDirPosition;
+      while(currentSub != NULL)
+        print CurrentSub;
+        printDir (currentSublevel + 1)
+        currentSub = currentSub->next;
+
+5)oslobodi sve
