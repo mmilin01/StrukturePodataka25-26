@@ -1,0 +1,62 @@
+struct tree{
+  int value;
+  treePos left;
+  teePos right;
+};
+
+1)Unosenje elementa:
+  treePos root = NULL;
+  root = insetTree(root, value);
+
+  a)root == NULL
+      -alokacija
+      root->value = value;
+      root->left = NULL;
+      root->right = NULL;
+
+  b)value < root->value
+  root -> left = insertTree(root->left, value);
+
+  c) value > root-> value                                                              OVO ABCDE SU KA UVJETI
+     root->right = insertTree(root->right, value);
+
+  return root;
+
+2)Brisanje stabla:
+  root = deleteTree(root, value)
+    a) root == NULL;
+          return NULL;
+    b)value < root->value
+        root->left = deleteTree(root->left, value);
+    c)value > root->value
+        root->right = deleteTree(root->right, value);
+    d)root->left != NULL ; i root->right != NULL
+        temp = findMinf(root->right);
+        root->value > temp->value;
+        root->right = deleteTree(root->right, temp->value);
+
+    e) if (root->left == NULL)
+          root = root->right;
+       else root = root->left;
+          free(temp);
+
+3) ispis:
+   a)inorder
+       printValue(root->left);
+       printf(root->value);
+       print Value(root->right);
+   b)postorder
+       printValue(root->left);
+       printvalue(root->right);
+       printf(root->value);
+   c)preorder
+       printf(root->value);
+       printValue(root->left);
+       printValue(root->right);
+
+4)brisanje 
+    root != NULL;
+        freeTree(root->left);
+        freeTree(root->right);
+        free(root);
+    return NULL;
