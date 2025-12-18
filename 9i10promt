@@ -1,0 +1,88 @@
+9ZDK
+b)replace(treePos root){
+      if(root == NULL)
+          return 0;
+      int prevVal = root->value;
+      root->value = replace (root->left) + replace(root->right);
+                    
+      return prevVal + root->value;
+  }
+c)prvo izbrisat cijelo stablo ovo pod b
+
+10ZDK
+struct countires{
+  char name;
+  Position next;
+  treePos root;
+}
+struct city{
+  char name;
+  treePos left;
+  treePos right;
+  int population;
+}
+main
+  Head = {.name = " ",.next = NULL};
+
+    -fopen(drž.txt)
+    -buffer -ime
+            -putanja
+    -sortitrani unos
+1)if(p->next == NULL)
+  -alokacija
+  -podataka
+  newEl->name = countryName;
+  newEl->root;
+  newEl->next = p->next;
+  p->next = newEl;
+
+2)p!=NULL && p->next->name > countryName;
+    -isto ka 1)
+
+3) p->mext = NULL i p->next->name < cName
+        p = p->next;
+    -isto ka i 1)
+
+
+1)if(p->next ==NULL)
+  -alokacjiaj
+  -pdosataka
+  -fopen(zemlja.txt, "r");
+      -buffer
+
+-sortiranje br . sZ
+1)id(root == NULL)
+      root = insert(root, popul);
+2)if(root->popul>popul)
+3)root->left = insert(root->left, popul);
+
+  if(root->popul<popul)
+    root->right = insert(root->right, popul);
+
+retrun root;
+
+-ispis
+  while(p!=NULL)
+      printf(p->name);
+      printfTree(p->root);//ispisujemo stablo rekurzivno
+      p=p->next;
+
+      printTree
+        if(root!=NULL)
+          printf(root->name);
+          printTree(root->left);
+          printTree(root->right);
+
+  ovo nestao zadnje s tipkovnice unosenje
+  while(p!=NULL)
+    -potraga za gradom
+        -pretražit stablo
+        p=p->next;
+
+  .ispis gradova po unosu(search Tree)
+      if(root == NULL)
+          return NULL;
+      if(root->popul > popul)
+          printf(root->name);
+      searchtree(root->right->popul)
+      searchtree(root->left->popul)
