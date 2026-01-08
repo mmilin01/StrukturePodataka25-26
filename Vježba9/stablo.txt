@@ -1,0 +1,7 @@
+Inorder nakon insert funkcije (a):
+66 54 50 43 31 31 26 22 20 13 
+
+Inorder nakon replace funkcije (b):
+0 66 273 0 43 122 22 0 336 0 
+
+Generirani brojevi: 20 50 13 31 54 31 43 66 26 22
