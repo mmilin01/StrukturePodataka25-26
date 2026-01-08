@@ -1,0 +1,53 @@
+struct HashTable{
+    int size;
+    Position *HashList;
+}
+
+struct Country{
+      .
+      .
+      .
+    int key;
+}
+
+-MAIN:
+    -inicijalizirat hashTable
+        -alokacija
+      hashTable->hashList = ... malloc
+
+      for(i=0;i<hasTable->size, i++)
+          hashTable->HashList[i] = NULL;
+
+-2. CITANJE IZ DAT drzave.txt
+      -findKey(string cName)
+            return(cName[0]+cName[1]+...[4])%hashTable->size
+
+      if(*(hashTable->HashList)==NULL)
+          -dodaj noviEl
+      else if( -I-    != NULL && strcmp(<0))
+          -dodaj novi el.
+      else
+        while(-nije kraj liste strcmp(>0))
+            i++;
+            hashtable->HashList+=i;
+         dodaj noviEl(van while unutar else)
+
+-DODAVANJE
+    strcomp
+    country->key = findKey(cName)
+    newEl->next = hashTable->HashList[findKey(cName)]
+    hashTable->hashList[findKey(cName)] = newEl;
+
+-TRAZENJE STANOVNIKA VECEG OD UNOSA
+    for(int i = 0; i<hashTable->size;i++){
+        -poziv fukcije za petragu lista
+          findCountry("head", populaton);
+              hashTable->hashList[i];
+
+-brisanje:
+  for(int i=0;i<hashTable->size;i++){
+    freeList("head");
+      hashTable-hashList[i];
+  }
+    }
+                
