@@ -1,0 +1,4 @@
+Sydney, 3774894
+Perth, 1234364
+Brisbane, 1683999
+Newcastle, 286667
