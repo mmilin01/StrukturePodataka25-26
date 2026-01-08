@@ -173,6 +173,9 @@ int main()
         }
         if (!found) printf("No cities with population > %d\n", minPopulation);
     }
+    
+    freeCountryList(countryListHead.next);
+    freeCountryTree(countryTree);
 
     return EXIT_SUCCESS;
 }
@@ -200,28 +203,26 @@ CountryTreePosition addCountryToTree(CountryTreePosition current, CountryTreePos
 
 CityTreePosition addCityToTree(CityTreePosition current, CityTreePosition newCity)
 {
-    if (!current) return newCity;
+    if (!current) return newCity;//current == NULL znaci nema korijenma i tuga ubacujemo
 
     if (newCity->population < current->population)
         current->left = addCityToTree(current->left, newCity);
     else if (newCity->population > current->population)
         current->right = addCityToTree(current->right, newCity);
-    else if (strcmp(newCity->name, current->name) < 0)
-        current->left = addCityToTree(current->left, newCity);
+    else if (strcmp(newCity->name, current->name) < 0)//ako je broj stanovnika isti koriustimo ime grada za sortiranje
+        current->left = addCityToTree(current->left, newCity);//ako je ime prije u abecedi ide liojevo
     else
-        current->right = addCityToTree(current->right, newCity);
+        current->right = addCityToTree(current->right, newCity);//akoje iza u abecedi ide desno
 
     return current;
 }
 
-int addCityToList(CityListPosition current, CityListPosition newCity)
+int addCityToList(CityListPosition current, CityListPosition newCity)//current pokazivac na pcoetni cvor liste dummy newCity zuelimo unbacit
 {
-    while (current->next && newCity->population > current->next->population)
-        current = current->next;
-    while (current->next &&
-        current->next->population == newCity->population &&
-        strcmp(newCity->name, current->next->name) > 0)
-        current = current->next;
+    while (current->next && newCity->population > current->next->population)//current->next provjerava jeli postoji iduci dvor
+        current = current->next;                                            //dok je broj stanovnika novog grada veći od sledećeg u listi idemo dalje
+    while (current->next &&current->next->population == newCity->population &&strcmp(newCity->name, current->next->name) > 0)
+        current = current->next;                //AKOJE POPULACIJA GRADOVA ISTA KORISTIMO IMENA ZA SORTIRANJE
 
     newCity->next = current->next;
     current->next = newCity;
@@ -230,10 +231,10 @@ int addCityToList(CityListPosition current, CityListPosition newCity)
 
 int printCityTree(CityTreePosition current)
 {
-    if (!current) return EXIT_SUCCESS;
-    printCityTree(current->left);
-    printf("\t%s, %d\n", current->name, current->population);
-    printCityTree(current->right);
+    if (!current) return EXIT_SUCCESS;//gledamo jeli current null ako je dosli smo do kraja stabla
+    printCityTree(current->left);//prvo ispisujemo manje gradove znaci one lijevo sipisujemo INORDER
+    printf("\t%s, %d\n", current->name, current->population);//Ispisujemo ime grada i broj stanovnika
+    printCityTree(current->right);//ispiujemo sve desne tojest one vece
     return EXIT_SUCCESS;
 }
 
@@ -259,19 +260,58 @@ int printCountryList(CountryListPosition current)
 int printCountryTree(CountryTreePosition current)
 {
     if (!current) return EXIT_SUCCESS;
-    printCountryTree(current->left);
+    printCountryTree(current->left);//isiipujemo sve drzave koje su manje od trenutne lijevo
     printf("%s:\n", current->name);
-    printCityList(current->cityList.next);
-    printCountryTree(current->right);
+    printCityList(current->cityList.next);//ispisujemo gradove u toj drzavi .next jel je to prvi stavrni grad
+    printCountryTree(current->right);//onda ispisujem sve vece od trenutne one desno
     return EXIT_SUCCESS;
 }
 
-CountryTreePosition findCountryByName(CountryTreePosition current, char* name)
+CountryTreePosition findCountryByName(CountryTreePosition current, char* name)//current treutniu cvor stabla
 {
-    if (!current) return NULL;
-    if (strcmp(name, current->name) < 0)
+    if (!current) return NULL;//rpazno stablo
+    if (strcmp(name, current->name) < 0)//tražena država je manja po abecedi od trenutnog čvora idemo u lijevo podstablo
         return findCountryByName(current->left, name);
-    else if (strcmp(name, current->name) > 0)
+    else if (strcmp(name, current->name) > 0)//tražena država je veća po abecedi od trenutnog čvora idemo u desno podstablo
         return findCountryByName(current->right, name);
     return current;
 }
+
+int freeCityTree(CityTreePosition root) {
+    if (!root) return 0;
+    freeCityTree(root->left);
+    freeCityTree(root->right);
+    free(root);
+    return 0;
+}
+
+int freeCityList(CityListPosition head) {
+    CityListPosition temp;
+    while (head) {
+        temp = head;
+        head = head->next;
+        free(temp);
+    }
+    return 0;
+}
+
+int freeCountryList(CountryListPosition head) {
+    CountryListPosition temp;
+    while (head) {
+        freeCityTree(head->citiesTree); // prvo oslobodi stablo gradova
+        temp = head;
+        head = head->next;
+        free(temp);
+    }
+    return 0;
+}
+
+int freeCountryTree(CountryTreePosition root) {
+    if (!root) return 0;
+    freeCountryTree(root->left);
+    freeCountryTree(root->right);
+    freeCityList(root->cityList.next); // prvo oslobodi gradove
+    free(root);
+    return 0;
+}
+
