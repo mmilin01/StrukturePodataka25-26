@@ -1,0 +1,5 @@
+Toronto, 2731571
+Montreal, 1704694
+Vancouver, 631486
+Calgary, 1239220
+Ottawa, 934243

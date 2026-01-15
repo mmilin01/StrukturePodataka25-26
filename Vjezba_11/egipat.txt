@@ -1,0 +1,5 @@
+Kairo, 9500000
+Alexandria, 5160000
+Giza, 4239988
+Shubra El-Kheima, 1025569
+Port Said, 603787

@@ -1,0 +1,5 @@
+Tokyo, 13929286
+Yokohama, 3726167
+Osaka, 2691000
+Nagoya, 2295638
+Sapporo, 1952356

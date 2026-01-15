@@ -1,0 +1,5 @@
+Rim, 2873000
+Milano, 1366180
+Napulj, 962589
+Torino, 870952
+Palermo, 663173

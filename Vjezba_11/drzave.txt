@@ -1,0 +1,11 @@
+Hrvatska, hrvatska.txt
+Francuska, francuska.txt
+Australija, australija.txt
+Indija, indija.txt
+Njemacka, njemacka.txt
+Italija, italija.txt
+Spanjolska, spanjolska.txt
+Brazil, brazil.txt
+Kanada, kanada.txt
+Japan, japan.txt
+Egipat, egipat.txt
